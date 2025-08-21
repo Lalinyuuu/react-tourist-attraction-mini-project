@@ -1,16 +1,22 @@
 import "./styles.css";
+import { toast } from "react-toastify";
 
 export default function TravelCard({ trip, onTagClick }) {
-  const title = trip.title;
-  const url = trip.url;
-  const tags = trip.tags ?? [];
-  const photos = trip.photos ?? [];
+  const {
+    title,
+    url,
+    tags = [],
+    photos = [],
+    description = "",
+  } = trip;
+
   const cover = photos[0];
   const thumbs = photos.slice(1, 4);
-  const desc = String(trip.description ?? "");
+  const desc = String(description);
 
   async function copyLink() {
     try {
+
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(url);
       } else {
@@ -21,9 +27,13 @@ export default function TravelCard({ trip, onTagClick }) {
         document.execCommand("copy");
         document.body.removeChild(ta);
       }
-      alert("คัดลอกลิงก์แล้ว ");
+
+      toast.success("✨ Link copied successfully! ✨🤍", {
+        icon: "🌟",
+        autoClose: 2000,
+      });
     } catch (err) {
-      alert("คัดลอกไม่สำเร็จ ");
+      toast.error("❌ Failed to copy!", { autoClose: 2000 });
       console.error(err);
     }
   }

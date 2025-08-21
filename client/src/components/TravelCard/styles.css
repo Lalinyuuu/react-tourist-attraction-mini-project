@@ -47,3 +47,22 @@
 .imagelist__img {
   @apply w-20 h-16 object-cover rounded;
 }
+
+
+.Toastify__toast--success {
+  background-color: #c5a6ff !important;   
+  border: 2px solid #ffffff !important;  
+  color: #ffe3e3 !important;            
+  border-radius: 15px !important;
+  font-weight: 600;
+  col
+}
+
+.Toastify__toast-body {
+  color: #fff !important;
+}
+
+
+.Toastify__toast--success .Toastify__progress-bar {
+  background: #cfff76 !important;   
+}
