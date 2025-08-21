@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./App.css";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import SearchBar from "./components/SearchBar";
 import TravelCard from "./components/TravelCard";
 
@@ -18,7 +19,7 @@ export default function App() {
     setError(null);
     try {
       const res = await axios.get(`${API}/trips`, {
-        params: { keywords: (q ?? "").trim() }, 
+        params: { keywords: (q ?? "").trim() },
       });
       setItems(Array.isArray(res.data?.data) ? res.data.data : []);
     } catch (err) {
@@ -29,11 +30,7 @@ export default function App() {
     }
   }
 
-  
-  useEffect(() => {
-    fetchTrips("");
-  }, []);
-
+  useEffect(() => { fetchTrips(""); }, []);
 
   const firstRun = useRef(true);
   useEffect(() => {
@@ -43,7 +40,6 @@ export default function App() {
     return () => clearTimeout(t);
   }, [query]);
 
-
   function handleTagClick(tag) {
     const tokens = query.trim().split(/\s+/).filter(Boolean);
     if (!tokens.includes(tag)) {
@@ -51,12 +47,19 @@ export default function App() {
     }
   }
 
+  async function handleCopyLink(url) {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("คัดลอกลิงก์แล้ว!", { autoClose: 1800 });
+    } catch {
+      toast.error("คัดลอกไม่สำเร็จ");
+    }
+  }
 
   return (
     <div className="app">
       <header className="app__header">
         <h1 className="app__title">เที่ยวไหนดี</h1>
-       
         <SearchBar value={query} onChange={setQuery} />
         <hr className="app__divider" />
       </header>
@@ -70,7 +73,7 @@ export default function App() {
         )}
         {!isLoading && !error && items.length === 0 && (
           <p className="app__info">
-            ไม่พบสถานที่ที่ตรงกับคำค้นหา{query.trim() ? ` “${query.trim()}”` : ""}
+            ไม่พบสถานที่ที่ตรงกับคำค้นหา{query.trim() ? ` "${query.trim()}"` : ""}
           </p>
         )}
 
@@ -79,11 +82,26 @@ export default function App() {
             <TravelCard
               key={trip.eid ?? trip.url}
               trip={trip}
-              onTagClick={handleTagClick}  // 
+              onTagClick={handleTagClick}
+              onCopyLink={() => handleCopyLink(trip.url)}
             />
           ))}
         </section>
       </main>
+
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
