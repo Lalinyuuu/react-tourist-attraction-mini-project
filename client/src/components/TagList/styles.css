@@ -1,0 +1,7 @@
+@reference "../../index.css";
+
+.taglist { 
+  @apply mt-3 flex flex-wrap gap-2; }
+  
+.taglist__tag { 
+  @apply px-3 py-1 bg-sky-100 text-sky-600 text-xs rounded-full; }

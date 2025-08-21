@@ -1,0 +1,49 @@
+@reference "../../index.css";
+
+.tcard { 
+  @apply flex gap-6 border-b pb-6 last:border-b-0;
+}
+
+.tcard__cover { 
+  @apply w-64 h-40 object-cover rounded-lg shrink-0;
+}
+
+.tcard__cover--placeholder { 
+  @apply bg-gray-200;
+}
+
+.tcard__content { 
+  @apply flex-1;
+}
+
+.tcard__title a { 
+  @apply text-lg font-semibold text-gray-900 hover:underline;
+}
+
+.tcard__desc { 
+  @apply mt-2 text-sm text-gray-700;
+}
+
+.tcard__read { 
+  @apply inline-block mt-2 text-sky-600 text-sm hover:underline;
+}
+
+.tcard__copy {
+  @apply inline-block ml-2 text-white bg-sky-600 px-2 py-1 rounded text-sm hover:bg-sky-700;
+}
+
+.taglist {
+  @apply mt-2 flex flex-wrap gap-2;
+}
+
+.taglist__tag {
+  @apply bg-gray-100 px-2 py-1 rounded text-xs text-gray-700 hover:bg-gray-200;
+}
+
+.imagelist {
+  @apply mt-2 flex gap-2;
+}
+
+.imagelist__img {
+  @apply w-20 h-16 object-cover rounded;
+}

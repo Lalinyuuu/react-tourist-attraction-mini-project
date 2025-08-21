@@ -1,0 +1,11 @@
+@reference "./index.css";
+
+.app         { @apply font-sans text-gray-800; }
+.app__header { @apply text-center py-8; }
+.app__title  { @apply text-3xl font-bold text-sky-600; }
+.app__divider{ @apply mt-6 border-gray-300; }
+
+.app__main   { @apply max-w-4xl mx-auto px-4; }
+.app__info   { @apply text-center text-gray-500; }
+.app__error  { @apply text-center text-red-500; }
+.app__list   { @apply space-y-10 mt-8; }
