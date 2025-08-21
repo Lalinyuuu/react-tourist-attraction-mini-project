@@ -1,3 +1,4 @@
+96c5d92 - lalinyuuu - feat: add toast notifications for link copying, update TravelCard component, and enhance Vite config
 5ae12ac - lalinyuuu - feat: integrate Tailwind CSS and Axios for travel app, update index.html title, and implement main app functionality
 589f4cb - Napat - refactor: create info dir
 9fb754d - knotnapat - add validation on server
