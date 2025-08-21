@@ -1,0 +1,7 @@
+@reference "../../index.css";
+
+.imagelist { 
+  @apply mt-3 flex gap-2; }
+  
+.imagelist__img { 
+  @apply w-20 h-14 object-cover rounded-md; }
